@@ -1,0 +1,26 @@
+{
+  "name": "private-music-server",
+  "version": "1.0.0",
+  "description": "read id3 data in all the music files in a directory, create a playlist, then build a music server for private use.",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BenzLeung/private-music-server.git"
+  },
+  "keywords": [
+    "\"music",
+    "server\""
+  ],
+  "author": "Benz Leung",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/BenzLeung/private-music-server/issues"
+  },
+  "homepage": "https://github.com/BenzLeung/private-music-server#readme",
+  "dependencies": {
+    "music-metadata": "^0.6.3"
+  }
+}
