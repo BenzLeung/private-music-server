@@ -4,7 +4,7 @@
   "description": "read id3 data in all the music files in a directory, create a playlist, then build a music server for private use.",
   "main": "index.js",
   "scripts": {
-    "test": "npm start"
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/BenzLeung/private-music-server#readme",
   "dependencies": {
+    "express": "^4.15.2",
     "music-metadata": "^0.6.3"
   }
 }

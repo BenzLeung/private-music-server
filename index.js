@@ -13,7 +13,7 @@ const util = require('util');
 function testMusicData() {
     var getMusicData = require('./lib/getMusicData');
 
-    getMusicData('./test_music/Sleep Away.mp3', function (metadata) {
+    getMusicData('./music/Sleep Away.mp3', function (metadata) {
         console.log(util.inspect(metadata, {showHidden: false, depth: null}));
     });
 }
@@ -21,7 +21,7 @@ function testMusicData() {
 function testMusicList() {
     var getMusicList = require('./lib/getMusicList');
 
-    getMusicList('./test_music/', function (list) {
+    getMusicList('./music/', function (list) {
         console.log(util.inspect(list, {showHidden: false, depth: null}));
     });
 }
@@ -29,7 +29,7 @@ function testMusicList() {
 function testMusicListToJsonFile() {
     var updateMusicListFile = require('./lib/updateMusicListFile');
 
-    updateMusicListFile('./test_music/', function (err) {
+    updateMusicListFile('./music/', function (err) {
         if (err) {
             console.log(util.inspect(err, {showHidden: false, depth: null}));
         } else {
