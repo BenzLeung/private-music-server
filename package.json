@@ -22,6 +22,7 @@
   "homepage": "https://github.com/BenzLeung/private-music-server#readme",
   "dependencies": {
     "express": "^4.15.2",
+    "jsesc": "^2.5.1",
     "music-metadata": "^0.6.3"
   }
 }
