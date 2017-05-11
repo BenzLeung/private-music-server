@@ -10,7 +10,7 @@
 
 const util = require('util');
 
-const musicDir = 'D:\\Benc\\Music\\iPhone Music';
+var musicDir = './music';
 
 function testMusicData() {
     var getMusicData = require('./lib/getMusicData');
@@ -28,7 +28,7 @@ function testMusicList() {
     });
 }
 
-function testMusicListToJsonFile() {
+function scanFolder() {
     var updateMusicListFile = require('./lib/updateMusicListFile');
 
     updateMusicListFile(musicDir, function (err) {
@@ -41,9 +41,25 @@ function testMusicListToJsonFile() {
 }
 
 function startServer() {
+    var path = require('path');
     var initServer = require('./lib/initServer');
-    initServer.setMusicDir(musicDir);
+    initServer.setMusicDir(path.join(__dirname, musicDir));
     initServer.init();
 }
 
-startServer();
+function main(arg) {
+    var cmd = 'start';
+    if (arg.length) {
+        cmd = arg[0];
+    }
+    switch (cmd) {
+        case 'scan':
+            scanFolder();
+            break;
+        case 'start':
+        default:
+            startServer();
+    }
+}
+
+main(process.argv.slice(2));
