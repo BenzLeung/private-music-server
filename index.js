@@ -15,7 +15,7 @@ var musicDir = './music';
 function testMusicData() {
     var getMusicData = require('./lib/getMusicData');
 
-    getMusicData('./music/Sleep Away.mp3', function (metadata) {
+    getMusicData('./music/musicList.json', function (metadata) {
         console.log(util.inspect(metadata, {showHidden: false, depth: null}));
     });
 }
@@ -40,11 +40,37 @@ function scanFolder() {
     });
 }
 
-function startServer() {
+function initMusicPath(callback) {
     var path = require('path');
+    var fs = require('fs');
+    fs.readFile(path.join(__dirname, './musicPath.cfg'), 'utf8', function (err, data) {
+        if (err) {
+            const readline = require('readline');
+
+            const rl = readline.createInterface({
+                input: process.stdin,
+                output: process.stdout
+            });
+
+            rl.question('Where is your music? (e.g. "D:\\My Music") ', function (answer) {
+                musicDir = path.join(__dirname, answer);
+                rl.close();
+                fs.writeFileSync(path.join(__dirname, './musicPath.cfg'), musicDir, 'utf8');
+                callback(musicDir);
+            });
+        } else {
+            musicDir = path.join(__dirname, data);
+            callback(musicDir);
+        }
+    });
+}
+
+function startServer() {
     var initServer = require('./lib/initServer');
-    initServer.setMusicDir(path.join(__dirname, musicDir));
-    initServer.init();
+    initMusicPath(function (p) {
+        initServer.setMusicDir(p);
+        initServer.init();
+    });
 }
 
 function main(arg) {
@@ -55,6 +81,9 @@ function main(arg) {
     switch (cmd) {
         case 'scan':
             scanFolder();
+            break;
+        case 'test-metadata':
+            testMusicData();
             break;
         case 'start':
         default:
