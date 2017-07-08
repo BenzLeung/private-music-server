@@ -53,7 +53,7 @@ function initMusicPath(callback) {
             });
 
             rl.question('Where is your music? (e.g. "D:\\My Music") ', function (answer) {
-                musicDir = path.join(__dirname, answer);
+                musicDir = answer;   // path.join(__dirname, answer);
                 rl.close();
                 fs.writeFileSync(path.join(__dirname, './musicPath.cfg'), musicDir, 'utf8');
                 callback(musicDir);
