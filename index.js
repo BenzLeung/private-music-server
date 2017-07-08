@@ -59,7 +59,7 @@ function initMusicPath(callback) {
                 callback(musicDir);
             });
         } else {
-            musicDir = path.join(__dirname, data);
+            musicDir = data;
             callback(musicDir);
         }
     });
