@@ -12,3 +12,5 @@ node_modules/
 test_music/
 music/
 musicPath.cfg
+
+client/

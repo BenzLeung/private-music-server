@@ -29,14 +29,16 @@ function testMusicList() {
 }
 
 function scanFolder() {
-    var updateMusicListFile = require('./lib/updateMusicListFile');
+    initMusicPath(function () {
+        var updateMusicListFile = require('./lib/updateMusicListFile');
 
-    updateMusicListFile(musicDir, function (err) {
-        if (err) {
-            console.log(util.inspect(err, {showHidden: false, depth: null}));
-        } else {
-            console.log('success!');
-        }
+        updateMusicListFile(musicDir, function (err) {
+            if (err) {
+                console.log(util.inspect(err, {showHidden: false, depth: null}));
+            } else {
+                console.log('success!');
+            }
+        });
     });
 }
 
